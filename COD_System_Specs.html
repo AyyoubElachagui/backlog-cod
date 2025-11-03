@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COD Shipping System - Specifications</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .cover-page {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .cover-page h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cover-page .subtitle {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+
+        h2 {
+            color: #667eea;
+            font-size: 2.2em;
+            margin-top: 60px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            font-weight: 700;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.6em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h4 {
+            color: #34495e;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul,
+        ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .user-story {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .user-story strong {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .acceptance {
+            color: #27ae60;
+            margin-top: 8px;
+            margin-left: 20px;
+            font-size: 0.95em;
+        }
+
+        .diagram {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow-x: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .diagram pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.4;
+            white-space: pre;
+        }
+
+        .feature-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-box h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .role-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-color: #667eea;
+        }
+
+        .role-card h4 {
+            color: #667eea;
+            margin-top: 0;
+        }
+
+        .timeline {
+            background: #f8f9fa;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .timeline h4 {
+            color: #27ae60;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .recommendation {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .recommendation strong {
+            color: #856404;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .pros {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .cons {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .highlight {
+            background: #fffacd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        .summary-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .summary-box h2 {
+            color: white;
+            border-bottom: 3px solid white;
+        }
+
+        .checkmark {
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .scope-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .in-scope {
+            background: #d4edda;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #28a745;
+        }
+
+        .out-scope {
+            background: #f8d7da;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #dc3545;
+        }
+
+        .lifecycle-flow {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 1.1em;
+            line-height: 2;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media print {
+            body {
+                padding: 20px;
+            }
+
+            .cover-page {
+                page-break-after: always;
+            }
+
+            h2 {
+                page-break-before: always;
+            }
+
+            .user-story,
+            .feature-box,
+            .timeline {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="cover-page">
+        <h1>COD SHIPPING SYSTEM</h1>
+        <div class="subtitle">Technical Specifications Document</div>
+        <div class="subtitle">MVP - Minimum Viable Product</div>
+    </div>
+
+    <!-- PROJECT OVERVIEW -->
+    <h2>1. Project Overview</h2>
+
+    <h3>What is This System?</h3>
+    <p>A <strong>web-based COD (Cash on Delivery) logistics management platform</strong> that automates the complete
+        shipping lifecycle - from order creation to delivery and payment settlement. The system supports multiple
+        sellers under one shipping company, with real-time tracking, automated assignment, and financial management.</p>
+
+    <h3>The 7 User Roles</h3>
+    <div class="roles-grid">
+        <div class="role-card">
+            <h4>1. Super Admin</h4>
+            <p>Manages system configuration, users, zones, and business rules (1 admin only)</p>
+        </div>
+        <div class="role-card">
+            <h4>2. Manager</h4>
+            <p>Oversees operations, assigns zones, manages teams, handles exceptions</p>
+        </div>
+        <div class="role-card">
+            <h4>3. Seller</h4>
+            <p>Creates orders, tracks deliveries, monitors payments (unlimited sellers supported)</p>
+        </div>
+        <div class="role-card">
+            <h4>4. Collector Person</h4>
+            <p>Picks up packages, scans barcodes, triggers assignment (mobile worker)</p>
+        </div>
+        <div class="role-card">
+            <h4>5. Delivery Person</h4>
+            <p>Delivers packages, collects cash, updates status (mobile worker)</p>
+        </div>
+        <div class="role-card">
+            <h4>6. Payment Person</h4>
+            <p>Manages daily settlements, uploads payment proofs, tracks commissions</p>
+        </div>
+        <div class="role-card">
+            <h4>7. Client (Buyer)</h4>
+            <p>Receives WhatsApp notifications, tracks orders via public page (no login)</p>
+        </div>
+    </div>
+
+    <h3>Core System Features</h3>
+    <ul>
+        <li><strong>Order Management:</strong> Complete lifecycle from creation to delivery</li>
+        <li><strong>Automated Assignment:</strong> Zone-based auto-assignment of orders to delivery personnel</li>
+        <li><strong>Real-Time Tracking:</strong> Live status updates via Socket.io across all dashboards</li>
+        <li><strong>WhatsApp Integration:</strong> Automatic customer notifications with tracking links</li>
+        <li><strong>QR/Barcode Scanning:</strong> Mobile camera scanning for status updates</li>
+        <li><strong>Payment Management:</strong> Multi-party settlement tracking with proof documentation</li>
+        <li><strong>Commission Automation:</strong> Auto-calculation of commissions and bonuses</li>
+        <li><strong>Mobile-First Design:</strong> Optimized interfaces for field personnel</li>
+        <li><strong>Multi-Tenant Support:</strong> Isolated data per seller under one company</li>
+        <li><strong>PDF Generation:</strong> Auto-generated shipping labels and invoices</li>
+    </ul>
+
+    <h3>Order Lifecycle Flow</h3>
+    <div class="lifecycle-flow">
+        <strong>1.</strong> Seller creates order → System generates PDF + sends WhatsApp to client<br>
+        <strong>2.</strong> Collector scans package → Marked "Collected" → Auto-assigned to delivery person<br>
+        <strong>3.</strong> Delivery person delivers → Scans package → Marks: Delivered/Returned/Rejected<br>
+        <strong>4.</strong> On delivery → System auto-marks "Cash Collected"<br>
+        <strong>5.</strong> Payment person settles → Uploads proof → Marks "Payment Done"
+    </div>
+
+    <h3>MVP Scope</h3>
+    <div class="in-scope" style="max-width: 800px;">
+        <h4 style="color: #155724;">✓ In Scope</h4>
+        <ul>
+            <li>Web-based application (responsive, mobile-friendly)</li>
+            <li><strong>Native mobile apps (iOS & Android)</strong></li>
+            <li>All 7 user roles with complete workflows</li>
+            <li>Zone-based auto/manual assignment</li>
+            <li>WhatsApp notifications</li>
+            <li><strong>Email notifications</strong></li>
+            <li>Real-time updates (Socket.io)</li>
+            <li>PDF generation with QR codes</li>
+            <li>Payment tracking and proof upload</li>
+            <li>Commission auto-calculation</li>
+            <li>Role-based dashboards</li>
+            <li><strong>Multi-language support</strong></li>
+            <li><strong>API Integration for Sellers:</strong> Sellers can integrate the API into their e-commerce
+                website to automatically create orders. All automatically created orders require seller confirmation
+                before being finalized in the system.</li>
+        </ul>
+    </div>
+
+    <!-- USER STORIES -->
+    <h2>2. User Stories</h2>
+
+    <h3>2.1 Super Admin Stories</h3>
+
+    <div class="user-story">
+        <strong>US-SA-01:</strong> As a Super Admin, I want to create user accounts for all roles, so that the team can
+        access the system
+        <div class="acceptance">
+            ✓ Form for username, password, role selection<br>
+            ✓ Assign zones for collectors/delivery persons
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SA-02:</strong> As a Super Admin, I want to define geographic zones, so that orders can be assigned
+        correctly
+        <div class="acceptance">
+            ✓ Zone name and boundary definition<br>
+            ✓ Assign zones to personnel
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SA-03:</strong> As a Super Admin, I want to configure commission rates, so that payments are
+        calculated accurately
+        <div class="acceptance">
+            ✓ Set rates per role (collector, delivery, seller)<br>
+            ✓ Option for fixed or percentage-based
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SA-04:</strong> As a Super Admin, I want to view system-wide analytics, so that I can monitor
+        business performance
+        <div class="acceptance">
+            ✓ Dashboard with deliveries, returns, payments<br>
+            ✓ Filter by date, zone, user
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SA-05:</strong> As a Super Admin, I want to configure WhatsApp notifications, so that clients receive
+        updates
+        <div class="acceptance">
+            ✓ API provider settings (Twilio/WhatsApp Cloud API)<br>
+            ✓ Message templates
+        </div>
+    </div>
+
+    <h3>2.2 Manager Stories</h3>
+
+    <div class="user-story">
+        <strong>US-MG-01:</strong> As a Manager, I want to view all orders in real-time, so that I can monitor
+        operations
+        <div class="acceptance">
+            ✓ Dashboard with orders by status<br>
+            ✓ Live updates via Socket.io
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-MG-02:</strong> As a Manager, I want to assign zones to collectors and delivery persons, so that
+        workload is balanced
+        <div class="acceptance">
+            ✓ Drag-and-drop zone assignment interface<br>
+            ✓ View personnel by zone
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-MG-03:</strong> As a Manager, I want to manually reassign orders, so that I can handle offline or
+        overloaded personnel
+        <div class="acceptance">
+            ✓ Select order and reassign to another delivery person<br>
+            ✓ Reason field for audit
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-MG-04:</strong> As a Manager, I want to create accounts for collectors and delivery persons, so that
+        new team members can start working
+        <div class="acceptance">
+            ✓ Quick user creation form<br>
+            ✓ Zone assignment during creation
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-MG-05:</strong> As a Manager, I want to view team performance metrics, so that I can identify top
+        performers
+        <div class="acceptance">
+            ✓ Delivery success rate per person<br>
+            ✓ Return rate and reasons
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-MG-06:</strong> As a Manager, I want to cancel problematic orders, so that issues can be resolved
+        <div class="acceptance">
+            ✓ Cancel button with reason field<br>
+            ✓ Notify seller of cancellation
+        </div>
+    </div>
+
+    <h3>2.3 Seller Stories</h3>
+
+    <div class="user-story">
+        <strong>US-SL-01:</strong> As a Seller, I want to create an order with customer details, so that packages can be
+        shipped
+        <div class="acceptance">
+            ✓ Form: name, address, phone, price<br>
+            ✓ Confirmation step before submission
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SL-02:</strong> As a Seller, I want the system to generate a shipping label PDF, so that I can print
+        and attach it to packages
+        <div class="acceptance">
+            ✓ Auto-generate PDF with QR code<br>
+            ✓ Download/print option
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SL-03:</strong> As a Seller, I want customers to receive WhatsApp notifications, so that they know
+        about delivery
+        <div class="acceptance">
+            ✓ Automatic WhatsApp sent on order creation<br>
+            ✓ Contains tracking number and link
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SL-04:</strong> As a Seller, I want to track orders in real-time, so that I know delivery status
+        <div class="acceptance">
+            ✓ Dashboard showing all orders<br>
+            ✓ Status indicators: Created, Collected, In Transit, Delivered, Returned
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SL-05:</strong> As a Seller, I want to edit orders before delivery starts, so that I can correct
+        mistakes
+        <div class="acceptance">
+            ✓ Edit button (enabled only for Created/Collected states)<br>
+            ✓ Update customer details
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SL-06:</strong> As a Seller, I want to cancel orders before delivery, so that unwanted shipments are
+        stopped
+        <div class="acceptance">
+            ✓ Cancel button (enabled only before In Transit)<br>
+            ✓ Confirmation dialog
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SL-07:</strong> As a Seller, I want to monitor payment status, so that I know when I'll receive money
+        <div class="acceptance">
+            ✓ Payment status column: Pending, Cash Collected, Paid<br>
+            ✓ View payment proof
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-SL-08:</strong> As a Seller, I want to view my performance analytics, so that I can improve sales
+        <div class="acceptance">
+            ✓ Total orders, delivery rate, return rate<br>
+            ✓ Daily/weekly/monthly trends
+        </div>
+    </div>
+
+    <h3>2.4 Collector Person Stories</h3>
+
+    <div class="user-story">
+        <strong>US-CL-01:</strong> As a Collector, I want to scan packages using my phone camera, so that collection is
+        fast
+        <div class="acceptance">
+            ✓ QR/barcode scanner using device camera<br>
+            ✓ &lt;10 seconds per scan
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-CL-02:</strong> As a Collector, I want orders to be marked "Collected" automatically, so that I don't
+        do manual entry
+        <div class="acceptance">
+            ✓ Status auto-updates on scan<br>
+            ✓ Real-time sync to all dashboards
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-CL-03:</strong> As a Collector, I want the system to auto-assign orders to delivery persons, so that
+        handoff is seamless
+        <div class="acceptance">
+            ✓ Automatic assignment based on zone<br>
+            ✓ Notification to delivery person
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-CL-04:</strong> As a Collector, I want to view pending collections in my zones, so that I can plan my
+        route
+        <div class="acceptance">
+            ✓ List of orders pending collection<br>
+            ✓ Filter by zone
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-CL-05:</strong> As a Collector, I want to use the system on my smartphone, so that I can work in the
+        field
+        <div class="acceptance">
+            ✓ Mobile-responsive web interface<br>
+            ✓ Works on 4"-7" screens
+        </div>
+    </div>
+
+    <h3>2.5 Delivery Person Stories</h3>
+
+    <div class="user-story">
+        <strong>US-DL-01:</strong> As a Delivery Person, I want to receive auto-assigned orders, so that I know what to
+        deliver
+        <div class="acceptance">
+            ✓ Orders auto-assigned based on my zone<br>
+            ✓ Notification when new order assigned
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-DL-02:</strong> As a Delivery Person, I want to view assigned orders on my phone, so that I can plan
+        deliveries
+        <div class="acceptance">
+            ✓ List of assigned orders<br>
+            ✓ Customer name, address, amount
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-DL-03:</strong> As a Delivery Person, I want to scan packages and mark delivery status, so that
+        tracking is updated
+        <div class="acceptance">
+            ✓ Scan package → choose: Delivered/Returned/Rejected<br>
+            ✓ One-tap status update
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-DL-04:</strong> As a Delivery Person, I want the system to track cash I collected, so that settlement
+        is accurate
+        <div class="acceptance">
+            ✓ Auto-calculate total cash collected on "Delivered" status<br>
+            ✓ Daily cash total displayed
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-DL-05:</strong> As a Delivery Person, I want to view my commission earnings, so that I know what I'll
+        be paid
+        <div class="acceptance">
+            ✓ Real-time commission calculation<br>
+            ✓ Daily earnings summary
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-DL-06:</strong> As a Delivery Person, I want the interface to work on my phone, so that I can update
+        while on motorcycle
+        <div class="acceptance">
+            ✓ Large touch targets<br>
+            ✓ Fast loading
+        </div>
+    </div>
+
+    <h3>2.6 Payment Person Stories</h3>
+
+    <div class="user-story">
+        <strong>US-PY-01:</strong> As a Payment Person, I want to view all pending payments, so that I can execute
+        settlements
+        <div class="acceptance">
+            ✓ List of all users with outstanding balances<br>
+            ✓ Filter by date, user, type
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-PY-02:</strong> As a Payment Person, I want to see auto-calculated payment amounts, so that I don't
+        make errors
+        <div class="acceptance">
+            ✓ System calculates: cash collected - commissions<br>
+            ✓ Breakdown per seller, collector, delivery person
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-PY-03:</strong> As a Payment Person, I want to upload payment proof, so that transactions are
+        documented
+        <div class="acceptance">
+            ✓ Upload PDF or screenshot<br>
+            ✓ Enter: bank name, transaction number, date
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-PY-04:</strong> As a Payment Person, I want to mark payments as done, so that status is updated for
+        all users
+        <div class="acceptance">
+            ✓ "Mark as Paid" button<br>
+            ✓ Real-time status update (seller sees "Paid")
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-PY-05:</strong> As a Payment Person, I want daily payment reports auto-generated, so that I don't
+        create them manually
+        <div class="acceptance">
+            ✓ Daily summary: who paid whom<br>
+            ✓ Total per zone, most active banks
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-PY-06:</strong> As a Payment Person, I want to track commission payments, so that field personnel get
+        paid
+        <div class="acceptance">
+            ✓ View commissions owed to collectors/delivery persons<br>
+            ✓ Mark commission payments complete
+        </div>
+    </div>
+
+    <h3>2.7 Client (Buyer) Stories</h3>
+
+    <div class="user-story">
+        <strong>US-CL-01:</strong> As a Client, I want to receive WhatsApp notification when order is created, so that
+        I'm informed
+        <div class="acceptance">
+            ✓ WhatsApp message with tracking number<br>
+            ✓ Link to tracking page
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-CL-02:</strong> As a Client, I want to track my order without logging in, so that it's easy
+        <div class="acceptance">
+            ✓ Public tracking page (no login required)<br>
+            ✓ Enter tracking number or click link
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-CL-03:</strong> As a Client, I want to see order status clearly, so that I know when to expect
+        delivery
+        <div class="acceptance">
+            ✓ Status displayed: Created, Collected, In Transit, Delivered<br>
+            ✓ Expected delivery date shown
+        </div>
+    </div>
+
+    <div class="user-story">
+        <strong>US-CL-04:</strong> As a Client, I want the tracking page to work on my phone, so that I can check
+        anytime
+        <div class="acceptance">
+            ✓ Mobile-responsive design<br>
+            ✓ Fast loading (&lt;3 seconds)
+        </div>
+    </div>
+
+    <!-- UML DIAGRAMS -->
+    <h2>3. UML Diagrams</h2>
+
+    <h3>3.1 Use Case Diagram</h3>
+    <div class="diagram">
+        <pre>
+                    ┌─────────────────────────────────────────┐
+                    │      COD Shipping System                │
+                    └─────────────────────────────────────────┘
+                                      │
+        ┌─────────────────────────────┼─────────────────────────────┐
+        │                             │                             │
+   ┌────▼────┐                  ┌─────▼─────┐              ┌───────▼──────┐
+   │  Super  │                  │  Manager  │              │   Seller     │
+   │  Admin  │                  └───────────┘              └──────────────┘
+   └─────────┘                        │                            │
+        │                              │                            │
+        │ • Manage Users               │ • Monitor Operations      │ • Create Orders
+        │ • Configure Zones            │ • Assign Zones            │ • Track Orders
+        │ • Set Commissions            │ • Reassign Orders         │ • Edit Orders
+        │ • View Analytics             │ • Create Accounts         │ • Cancel Orders
+        │ • System Config              │ • View Performance        │ • View Payments
+        │                              │                            │
+        │                              │                            │
+   ┌────▼────┐                  ┌─────▼─────┐              ┌───────▼──────┐
+   │Collector│                  │ Delivery  │              │   Payment    │
+   │ Person  │                  │  Person   │              │   Person     │
+   └─────────┘                  └───────────┘              └──────────────┘
+        │                              │                            │
+        │ • Scan Packages              │ • Receive Orders          │ • View Pending
+        │ • Mark Collected             │ • Scan Delivery           │ • Upload Proof
+        │ • View Collections           │ • Update Status           │ • Mark Paid
+        │ • Track Commission           │ • Track Cash              │ • Generate Reports
+        │                              │ • View Commission         │
+        │                              │                            │
+        └──────────────────────────────┼────────────────────────────┘
+                                       │
+                                 ┌─────▼─────┐
+                                 │   Client  │
+                                 │  (Buyer)  │
+                                 └───────────┘
+                                       │
+                                       │ • Track Order
+                                       │ • View Status
+        </pre>
+    </div>
+
+    <h3>3.2 Order Lifecycle - State Diagram</h3>
+    <div class="diagram">
+        <pre>
+           ┌──────────┐
+           │  CREATED │ ◄─── Seller creates order
+           └─────┬────┘
+                 │ Collector scans package
+                 ▼
+           ┌──────────┐
+           │COLLECTED │ ◄─── System triggers assignment
+           └─────┬────┘
+                 │ Assigned to delivery person
+                 ▼
+           ┌──────────┐
+           │IN TRANSIT│ ◄─── Delivery person has order
+           └─────┬────┘
+                 │ Delivery person scans at customer
+                 │
+      ┌──────────┼──────────┐
+      │          │          │
+      ▼          ▼          ▼
+ ┌─────────┐ ┌────────┐ ┌─────────┐
+ │DELIVERED│ │RETURNED│ │REJECTED │
+ └────┬────┘ └────────┘ └─────────┘
+      │ Auto-transition on successful delivery
+      ▼
+ ┌──────────────┐
+ │CASH COLLECTED│ ◄─── System auto-marks
+ └──────┬───────┘
+        │ Payment person processes
+        ▼
+ ┌────────────┐
+ │PAYMENT DONE│ ◄─── Final state
+ └────────────┘
+        </pre>
+    </div>
+
+    <h3>3.3 Complete Order Flow - Activity Diagram</h3>
+    <div class="diagram">
+        <pre>
+START
+  │
+  ▼
+[Seller: Enter Order Details] ────► (Name, Address, Phone, Price)
+  │
+  ▼
+[Seller: Confirm Order?] ────No────┐
+  │ Yes                            │
+  ▼                                │
+[System: Generate PDF Label]       │
+  │                                │
+  ▼                                │
+[System: Send WhatsApp to Client]  │
+  │                                │
+  ▼                                │
+[Wait for Collector]               │
+  │                               ┌┴──────────────┐
+  ▼                               │ [Edit/Cancel] │
+[Collector: Scan Package]         └───────────────┘
+  │
+  ▼
+[System: Mark as COLLECTED]
+  │
+  ▼
+[System: Find Delivery Person by Zone]
+  │
+  ├──► If Offline? ────► [Manager: Manual Assignment]
+  │                               │
+  ▼                               │
+[System: Auto-Assign] ◄───────────┘
+  │
+  ▼
+[Delivery Person: Receives Order]
+  │
+  ▼
+[Delivery Person: Goes to Customer]
+  │
+  ▼
+[Delivery Person: Scan Package]
+  │
+  ▼
+[Delivery Person: Select Outcome]
+  │
+  ├───► DELIVERED ────► [System: Mark CASH COLLECTED]
+  │                              │
+  ├───► RETURNED                 │
+  │                              │
+  └───► REJECTED                 │
+                                 │
+                                 ▼
+                    [Payment Person: View Pending]
+                                 │
+                                 ▼
+                    [Payment Person: Execute Payment via Bank]
+                                 │
+                                 ▼
+                    [Payment Person: Upload Proof]
+                                 │
+                                 ▼
+                    [Payment Person: Mark PAYMENT DONE]
+                                 │
+                                 ▼
+                              END
+        </pre>
+    </div>
+
+    <h3>3.4 Order Creation - Sequence Diagram</h3>
+    <div class="diagram">
+        <pre>
+Seller         System           Database       WhatsApp API      Client
+  │               │                 │                │             │
+  ├──Create Order─►│                │                │             │
+  │               ├─Validate Data──►│                │             │
+  │               │◄────OK──────────┤                │             │
+  │◄─Confirmation─┤                 │                │             │
+  │               │                 │                │             │
+  ├───Confirm────►│                 │                │             │
+  │               ├──Save Order────►│                │             │
+  │               │◄──Order ID──────┤                │             │
+  │               │                 │                │             │
+  │               ├──Generate PDF───┤                │             │
+  │               │◄───PDF URL──────┤                │             │
+  │               │                 │                │             │
+  │               ├──Send WhatsApp──┼───────────────►│             │
+  │               │                 │                ├──Message───►│
+  │               │◄────Sent────────┼────────────────┤             │
+  │               │                 │                │             │
+  │◄──PDF + Success─┤               │                │             │
+  │               │                 │                │             │
+        </pre>
+    </div>
+
+    <h3>3.5 Delivery Workflow - Sequence Diagram</h3>
+    <div class="diagram">
+        <pre>
+Collector    System     Database    Delivery Person    Client
+  │            │            │              │             │
+  ├─Scan QR───►│            │              │             │
+  │            ├─Get Order─►│              │             │
+  │            │◄─Order Data─┤             │             │
+  │            ├─Mark Collected─►          │             │
+  │            │            │              │             │
+  │            ├─Find Delivery Person by Zone            │
+  │            │◄─Person ID──┤             │             │
+  │            │            │              │             │
+  │            ├──Assign Order──────────►  │             │
+  │            │            │   ◄─Notification─          │
+  │◄─Success───┤            │              │             │
+  │            │            │              │             │
+                                           ├──Go to Customer
+                                           │             │
+                                           ├──Scan QR───►│
+                                           │             │
+                          ┌────────────────┤             │
+                          │                │             │
+                     [Delivered]           │             │
+                          │                │             │
+                          ├──Collect Cash─►│             │
+                          │                │             │
+                          ├─Update Status─►│             │
+                          │                ├──Save─────►│
+                          │                │◄─OK────────┤
+                          │                │             │
+                          │                ├─Auto Mark  │
+                          │                │ CASH        │
+                          │                │ COLLECTED ─►│
+                          │◄───Success─────┤             │
+        </pre>
+    </div>
+
+    <!-- KEY FEATURES -->
+    <h2>4. Key Features & Workflows</h2>
+
+    <div class="feature-box">
+        <h3>4.1 Zone-Based Assignment Logic</h3>
+        <h4>How It Works:</h4>
+        <ul>
+            <li>Each order belongs to a delivery zone (based on customer address)</li>
+            <li>Collectors and delivery persons are assigned to specific zones</li>
+            <li>When collector scans a package, system automatically finds available delivery person in that zone</li>
+        </ul>
+        <h4>Assignment Rules:</h4>
+        <ol>
+            <li>Match order zone with delivery person's assigned zones</li>
+            <li>Check delivery person is online/available</li>
+            <li>If multiple available, select based on: current workload → last assignment time → round-robin</li>
+            <li>If none available, notify manager for manual assignment</li>
+        </ol>
+        <h4>Edge Cases:</h4>
+        <ul>
+            <li>Delivery person offline → Reassign to another or manager handles</li>
+            <li>No delivery person in zone → Manager manual assignment</li>
+            <li>Collector can handle multiple zones</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h3>4.2 Real-Time Updates (Socket.io)</h3>
+        <h4>Implementation:</h4>
+        <ul>
+            <li>WebSocket connections maintained for all logged-in users</li>
+            <li>On status change, server broadcasts update to all relevant clients</li>
+            <li>Updates appear instantly on dashboards without page refresh</li>
+        </ul>
+        <h4>Triggers:</h4>
+        <ul>
+            <li>Order created → Notify collector (if in their zone)</li>
+            <li>Order collected → Notify assigned delivery person</li>
+            <li>Order delivered → Notify seller, payment person</li>
+            <li>Payment done → Notify seller</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h3>4.3 WhatsApp Notifications</h3>
+        <h4>Triggers:</h4>
+        <p>Order creation: Send tracking info to client</p>
+        <h4>Message Content:</h4>
+        <div style="background: white; padding: 15px; border-radius: 5px; margin: 10px 0; border: 1px solid #ddd;">
+            <code>
+                Hello! Your order #[TRACKING_NUMBER] has been created.<br>
+                Track your delivery: [TRACKING_LINK]<br>
+                Expected delivery: [DATE]
+            </code>
+        </div>
+        <h4>Provider Options:</h4>
+        <ul>
+            <li><strong>Twilio</strong> - paid, reliable, easy setup</li>
+            <li><strong>WhatsApp Cloud API</strong> - free tier, requires business verification</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h3>4.4 Payment Settlement Workflow</h3>
+        <h4>Daily Process:</h4>
+        <ol>
+            <li><strong>Calculate Totals:</strong>
+                <ul>
+                    <li>Delivery person cash collected: Sum of all delivered orders</li>
+                    <li>Collector commission: Auto-calculated based on successful deliveries</li>
+                    <li>Delivery person commission: Auto-calculated</li>
+                    <li>Seller payout: (Order value × number of orders) - commission</li>
+                </ul>
+            </li>
+            <li><strong>Payment Person Actions:</strong>
+                <ul>
+                    <li>View pending payments dashboard</li>
+                    <li>Execute payment via bank app (outside system)</li>
+                    <li>Upload proof (screenshot/PDF)</li>
+                    <li>Enter metadata (bank, transaction #, date)</li>
+                    <li>Mark as "Payment Done"</li>
+                </ul>
+            </li>
+            <li><strong>System Actions:</strong>
+                <ul>
+                    <li>Update status for all parties</li>
+                    <li>Generate daily report</li>
+                    <li>Update commission ledger</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <div class="feature-box">
+        <h3>4.5 Commission Calculation</h3>
+        <h4>Formula Options:</h4>
+        <div class="pros-cons">
+            <div>
+                <strong>Option 1: Fixed per Order</strong>
+                <ul>
+                    <li>Delivery: $X per delivery</li>
+                    <li>Collector: $Y per collection</li>
+                    <li>Seller: Order value - $Z</li>
+                </ul>
+            </div>
+            <div>
+                <strong>Option 2: Percentage-Based</strong>
+                <ul>
+                    <li>Delivery: X% of order value</li>
+                    <li>Collector: Y% of order value</li>
+                    <li>Seller: Order value - (X% + Y%)</li>
+                </ul>
+            </div>
+        </div>
+        <h4>Configuration:</h4>
+        <ul>
+            <li>Set by Super Admin or Manager</li>
+            <li>Can vary by zone (optional)</li>
+            <li>Applied automatically on order completion</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h3>4.6 QR/Barcode Scanning</h3>
+        <h4>Process:</h4>
+        <ol>
+            <li>System generates unique QR code for each order (embedded in PDF label)</li>
+            <li>Collector/Delivery person opens mobile dashboard</li>
+            <li>Tap "Scan" button → camera activates</li>
+            <li>Point camera at QR code</li>
+            <li>System reads code → fetches order → updates status</li>
+            <li>Confirmation shown in &lt;2 seconds</li>
+        </ol>
+        <h4>Technology:</h4>
+        <ul>
+            <li>Web-based camera API (no app needed)</li>
+            <li>Works on all modern smartphones</li>
+            <li>Fallback: manual tracking number entry</li>
+        </ul>
+    </div>
+
+    <!-- OPEN QUESTIONS -->
+    <h2>5. Open Questions & Recommendations</h2>
+
+    <h3>5.1 Assignment Logic for Multiple Delivery Persons</h3>
+    <p><strong>Question:</strong> When multiple delivery persons are available in one zone, how should the system
+        decide?</p>
+
+    <div class="recommendation">
+        <h4>A. Round-Robin (Recommended)</h4>
+        <div class="pros-cons">
+            <div class="pros">
+                <strong>✓ Pros:</strong>
+                <ul>
+                    <li>Fair distribution</li>
+                    <li>Simple to implement</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <strong>✗ Cons:</strong>
+                <ul>
+                    <li>Doesn't account for current workload</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <h4>B. Workload-Based</h4>
+        <div class="pros-cons">
+            <div class="pros">
+                <strong>✓ Pros:</strong>
+                <ul>
+                    <li>Balances load automatically</li>
+                    <li>Prevents overload</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <strong>✗ Cons:</strong>
+                <ul>
+                    <li>More complex logic</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="feature-box">
+        <h4>C. Manager Preference</h4>
+        <div class="pros-cons">
+            <div class="pros">
+                <strong>✓ Pros:</strong>
+                <ul>
+                    <li>Flexibility for performance-based assignment</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <strong>✗ Cons:</strong>
+                <ul>
+                    <li>Requires manual configuration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="recommendation">
+        <strong>Recommendation:</strong> Start with <span class="highlight">Round-Robin (A)</span> for MVP, add workload
+        balancing in Phase 2.
+    </div>
+
+    <h3>5.2 Commission Structure</h3>
+    <p><strong>Question:</strong> Fixed amount per order or percentage-based?</p>
+
+    <div class="recommendation">
+        <h4>Recommendation: Percentage-Based</h4>
+        <strong>Why:</strong>
+        <ul>
+            <li>Scales with order value (fair for all parties)</li>
+            <li>Incentivizes high-value deliveries</li>
+            <li>Easier to adjust (one percentage vs many fixed values)</li>
+        </ul>
+        <strong>Suggested Rates:</strong>
+        <ul>
+            <li>Company commission: 15% of order value</li>
+            <li>Delivery person: 8% of order value</li>
+            <li>Collector person: 2% of order value</li>
+            <li>Seller receives: 85% of order value</li>
+        </ul>
+        <p><strong>Configuration:</strong> Super Admin can adjust percentages per role in settings.</p>
+    </div>
+
+    <h3>5.3 WhatsApp Integration Provider</h3>
+    <p><strong>Question:</strong> Twilio or WhatsApp Cloud API?</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Twilio</th>
+                <th>WhatsApp Cloud API</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Cost</strong></td>
+                <td>~$0.005 per message</td>
+                <td>Free (up to 1,000/day), then $0.004</td>
+            </tr>
+            <tr>
+                <td><strong>Setup</strong></td>
+                <td>Easy, 15 mins</td>
+                <td>Moderate, requires Meta Business verification</td>
+            </tr>
+            <tr>
+                <td><strong>Reliability</strong></td>
+                <td>99.95% uptime</td>
+                <td>99.9% uptime</td>
+            </tr>
+            <tr>
+                <td><strong>Features</strong></td>
+                <td>Rich messages, media</td>
+                <td>Standard messages</td>
+            </tr>
+            <tr>
+                <td><strong>Best For</strong></td>
+                <td>Quick launch</td>
+                <td>Long-term cost savings</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="recommendation">
+        <strong>Recommendation:</strong>
+        <ul>
+            <li><strong>For MVP/Quick Launch:</strong> Use <span class="highlight">Twilio</span> (faster setup)</li>
+            <li><strong>For Production:</strong> Migrate to <span class="highlight">WhatsApp Cloud API</span> (cost
+                savings)</li>
+        </ul>
+    </div>
+
+    <h3>5.4 Tracking Page Design</h3>
+    <p><strong>Question:</strong> Minimal or branded tracking page?</p>
+
+    <div class="recommendation">
+        <h4>Recommendation: Branded Design</h4>
+        <strong>Why:</strong>
+        <ul>
+            <li>Builds company identity</li>
+            <li>Professional appearance increases trust</li>
+            <li>Minimal cost difference</li>
+            <li>Better customer experience</li>
+        </ul>
+        <strong>Included Elements:</strong>
+        <ul>
+            <li>Company logo and colors</li>
+            <li>Order status timeline (visual)</li>
+            <li>Expected delivery date</li>
+            <li>Tracking number</li>
+            <li>Support contact info (optional)</li>
+        </ul>
+        <p><strong>Mobile-first design</strong> with clean, simple interface.</p>
+    </div>
+
+    <!-- TIMELINE -->
+    <h2>6. Timeline Estimate</h2>
+
+    <div class="timeline">
+        <h3>Phase 1: Core MVP (8-10 weeks)</h3>
+
+        <h4>Week 1-2: Foundation</h4>
+        <ul>
+            <li>Database design</li>
+            <li>User authentication & RBAC</li>
+            <li>Basic UI framework</li>
+        </ul>
+
+        <h4>Week 3-4: Order Management</h4>
+        <ul>
+            <li>Seller: Create, edit, cancel orders</li>
+            <li>PDF generation with QR codes</li>
+            <li>Order listing and filtering</li>
+        </ul>
+
+        <h4>Week 5-6: Field Operations</h4>
+        <ul>
+            <li>Collector mobile interface</li>
+            <li>Delivery person mobile interface</li>
+            <li>QR/barcode scanning</li>
+            <li>Auto-assignment logic</li>
+        </ul>
+
+        <h4>Week 7-8: Payment & Integration</h4>
+        <ul>
+            <li>Payment person dashboard</li>
+            <li>Payment proof upload</li>
+            <li>WhatsApp integration</li>
+            <li>Commission calculation</li>
+        </ul>
+
+        <h4>Week 9-10: Admin & Polish</h4>
+        <ul>
+            <li>Super Admin dashboard</li>
+            <li>Manager dashboard</li>
+            <li>Zone management</li>
+            <li>Analytics and reports</li>
+            <li>Bug fixes and testing</li>
+        </ul>
+    </div>
+
+    <div class="timeline" style="border-left-color: #3498db;">
+        <h3>Phase 2: Advanced Features (4-6 weeks)</h3>
+
+        <h4>Week 11-13:</h4>
+        <ul>
+            <li>Workload-based assignment</li>
+            <li>Advanced analytics</li>
+            <li>Performance metrics</li>
+            <li>Real-time notifications enhancement</li>
+        </ul>
+
+        <h4>Week 14-16:</h4>
+        <ul>
+            <li>Public tracking page</li>
+            <li>Enhanced reporting</li>
+            <li>Audit logs</li>
+            <li>System optimization</li>
+        </ul>
+    </div>
+
+    <div class="timeline" style="border-left-color: #e74c3c;">
+        <h3>Phase 3: Testing & Deployment (2-3 weeks)</h3>
+
+        <h4>Week 17-18:</h4>
+        <ul>
+            <li>User acceptance testing</li>
+            <li>Bug fixes</li>
+            <li>Performance testing</li>
+            <li>Security audit</li>
+        </ul>
+
+        <h4>Week 19:</h4>
+        <ul>
+            <li>Production deployment</li>
+            <li>User training</li>
+            <li>Documentation</li>
+            <li>Go-live support</li>
+        </ul>
+    </div>
+
+    <div class="feature-box">
+        <h3>Total Timeline: 14-19 weeks (3.5 - 4.5 months)</h3>
+        <h4>Dependencies:</h4>
+        <ul>
+            <li>Client decisions on open questions: 1 week</li>
+            <li>WhatsApp API setup/verification: 1-2 weeks</li>
+            <li>User testing availability: Ongoing</li>
+        </ul>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="summary-box">
+        <h2>Summary</h2>
+        <p>This COD Shipping System automates the complete logistics workflow for Cash-on-Delivery orders. The MVP
+            delivers:</p>
+
+        <ul style="font-size: 1.1em; line-height: 2;">
+            <li><span class="checkmark">✅</span> <strong>7 user roles</strong> with specialized workflows</li>
+            <li><span class="checkmark">✅</span> <strong>Automated assignment</strong> reducing manual coordination</li>
+            <li><span class="checkmark">✅</span> <strong>Real-time tracking</strong> for transparency</li>
+            <li><span class="checkmark">✅</span> <strong>WhatsApp notifications</strong> keeping customers informed</li>
+            <li><span class="checkmark">✅</span> <strong>Mobile-first</strong> design for field personnel</li>
+            <li><span class="checkmark">✅</span> <strong>Automated payments</strong> with proof documentation</li>
+            <li><span class="checkmark">✅</span> <strong>Multi-seller support</strong> under one platform</li>
+        </ul>
+
+        <h3 style="color: white; border-bottom: 3px solid white; margin-top: 40px;">Next Steps:</h3>
+        <ol style="font-size: 1.1em; line-height: 2;">
+            <li>Review and approve specifications</li>
+            <li>Decide on open questions (assignment logic, commission structure, WhatsApp provider)</li>
+            <li>Confirm timeline and phase priorities</li>
+            <li>Begin development Phase 1</li>
+        </ol>
+    </div>
+
+    <div style="text-align: center; margin-top: 60px; padding: 40px; background: #f8f9fa; border-radius: 10px;">
+        <h2 style="color: #667eea; border: none;">Questions or clarifications?</h2>
+        <p style="font-size: 1.2em; color: #555;">Let's discuss!</p>
+    </div>
+
+</body>
+
+</html>
